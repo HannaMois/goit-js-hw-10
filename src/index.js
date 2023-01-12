@@ -11,6 +11,7 @@ const countryInfo = document.querySelector('.country-info');
 
 countryInput.addEventListener('input', debounce(onCountryInput, DEBOUNCE_DELAY));
 
+
 function onCountryInput (evt) {
     // evt.preventDefault();
     let searchQuery = evt.target.value.trim();
@@ -47,6 +48,7 @@ function onCountryInput (evt) {
 //   }
 
 function renderCountryList(countries) {
+    // console.log(countries);
     const markup = countries.map(({ name, flags }) => {
             return `
                 <li class = 'card'>
@@ -66,6 +68,7 @@ function renderCountryList(countries) {
     };
 
 function renderCountryCard(countries) {
+        //  console.log(Object.values(countries[0].languages));
     const markup = countries.map(({ name, capital, population, languages, flags }) => {
         return `<img
                     src='${flags.svg}'
@@ -77,7 +80,7 @@ function renderCountryCard(countries) {
                     <p class = 'info'>Population: <span class='span'><i>${population}</i></span></p>
                     <p class = 'info'>Languages: <span class='span'><i>${Object.values(countries[0].languages).map(elem => elem.name).join(',')}</i></span></p>
            `}).join('');
-       
+      
         countryInfo.innerHTML = markup;
         countryList.innerHTML = '';
     }
